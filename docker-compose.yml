@@ -1,0 +1,14 @@
+services:
+  app:
+    image: giannismel/express-app:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_POLL_INTERVAL: 60
